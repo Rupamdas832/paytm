@@ -47,10 +47,7 @@ export default async function () {
       <div className="grid grid-cols-1 gap-4 md:grid-cols-2 w-full mt-4">
         {session.user && <AddMoneyCard user={session.user} />}
         <div className="flex flex-1 flex-col w-full">
-          <BalanceCard amount={balance.amount} locked={balance.locked} />
-          <div className="mt-4">
-            <OnRampTransactionsCard transactions={transactions} />
-          </div>
+          <OnRampTransactionsCard transactions={transactions} />
         </div>
       </div>
     </div>

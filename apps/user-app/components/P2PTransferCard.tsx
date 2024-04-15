@@ -12,19 +12,24 @@ const P2PTransferCard = () => {
   const router = useRouter();
   const [phoneNumber, setPhoneNumber] = useState(0);
   const [amount, setAmount] = useState(0);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState("");
 
   const handleSendMoneyClick = async () => {
+    setError("");
     if (phoneNumber && amount) {
       const startTime = new Date();
       try {
-        await P2PTransferAction(
+        const response = await P2PTransferAction(
           String(phoneNumber),
           amount * DECIMAL_COUNT,
           startTime
         );
 
-        router.push("/transactions");
+        if (response.statusCode === 201) {
+          router.push("/transactions");
+        } else if (response.statusCode === 400) {
+          setError(response.message);
+        }
       } catch (error: any) {
         await CreateTransactionAction({
           amount: amount * DECIMAL_COUNT,
@@ -34,7 +39,7 @@ const P2PTransferCard = () => {
           endTime: new Date(),
           receiverPhoneNumber: String(phoneNumber),
         });
-        setError(error?.response?.data);
+        setError("Something went wrong");
         console.log(error);
       }
     }
@@ -54,6 +59,7 @@ const P2PTransferCard = () => {
         onChange={(val) => setAmount(Number(val))}
         label="Amount"
       />
+      {error && <p className="text-red-500 text-center pt-2">{error}</p>}
       <div className="mt-4 flex justify-end">
         <Button onClick={handleSendMoneyClick}>Send money</Button>
       </div>

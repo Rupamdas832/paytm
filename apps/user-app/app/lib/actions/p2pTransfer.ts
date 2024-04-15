@@ -28,8 +28,14 @@ export const P2PTransferAction = async (
       },
     });
     if (!senderBalance || senderBalance.amount < amount) {
-      throw new Error("Insufficient funds");
+      return {
+        isError: true,
+        isSuccess: false,
+        message: "Insufficient funds",
+        statusCode: 400,
+      };
     }
+    let transaction = {};
     await prisma.$transaction(async (txn) => {
       await txn.balance.update({
         where: {
@@ -51,7 +57,7 @@ export const P2PTransferAction = async (
           },
         },
       });
-      await CreateTransactionAction({
+      transaction = await CreateTransactionAction({
         amount: amount,
         type: "SEND_MONEY",
         status: "Success",
@@ -60,9 +66,22 @@ export const P2PTransferAction = async (
         receiverPhoneNumber: String(phoneNumber),
       });
     });
-    return { message: "Money send successfully!" };
-  } catch (error) {
+    return {
+      isError: true,
+      isSuccess: false,
+      data: transaction,
+      message: "Money send successfully!",
+      statusCode: 201,
+    };
+  } catch (err: any) {
+    const error = err.response?.data;
     console.log(error);
-    return { message: "Money send successfully!", error };
+    return {
+      isError: true,
+      isSuccess: false,
+      error: error.error,
+      message: error.message,
+      statusCode: err.response.status,
+    };
   }
 };

@@ -1,6 +1,3 @@
-import home from "../../assets/Icons/home.svg";
-import transactions from "../../assets/Icons/transactions.svg";
-import transfer from "../../assets/Icons/transfer.svg";
 import SiderbarItem from "../../components/SidebarItem";
 
 const sidebarItems = [
@@ -83,6 +80,26 @@ const sidebarItems = [
     ),
     title: "P2P Transfer",
     path: "/p2p-transfer",
+  },
+  {
+    icon: (
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth="1.5"
+        stroke="currentColor"
+        className="w-6 h-6"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="m4.5 19.5 15-15m0 0H8.25m11.25 0v11.25"
+        />
+      </svg>
+    ),
+    title: "Merchant Transfer",
+    path: "/merchant-transfer",
   },
 ];
 

@@ -1,3 +1,5 @@
-export default function Page(): JSX.Element {
-  return <div className="p-4">Merchant app</div>;
+import { redirect } from "next/navigation";
+
+export default async function Page() {
+  redirect("/notifications");
 }

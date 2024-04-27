@@ -1,5 +1,6 @@
 import express from "express";
 import { Server } from "socket.io";
+import { v4 as uuidv4 } from "uuid";
 
 const app = express();
 const httpServer = app.listen(8080, () => {
@@ -26,8 +27,12 @@ io.on("connection", (socket) => {
   });
 
   socket.on("send_notification", (data) => {
-    io.sockets
-      .in(data.email)
-      .emit("get_notification", { message: data.message });
+    io.sockets.in(data.email).emit("get_notification", {
+      id: uuidv4(),
+      message: data?.message,
+      referenceId: data?.referenceId,
+      type: data?.type,
+      createdOn: new Date(),
+    });
   });
 });

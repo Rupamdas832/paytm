@@ -36,7 +36,7 @@ export const P2PTransferAction = async (
       };
     }
     let transaction = {};
-    await prisma.$transaction(async (txn) => {
+    await prisma.$transaction(async (txn: any) => {
       await txn.balance.update({
         where: {
           userId: Number(session?.user?.id),
@@ -65,6 +65,7 @@ export const P2PTransferAction = async (
         endTime: new Date(),
         receiverPhoneNumber: String(phoneNumber),
       });
+      return { message: "Transaction success" };
     });
     return {
       isError: true,

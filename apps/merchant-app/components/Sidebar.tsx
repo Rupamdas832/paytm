@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import useSocket from "../hooks/useSocket";
 import { Notification, useNotificationStore } from "../store/notificationStore";
 import SiderbarItem from "./SidebarItem";
-import { usePathname } from "next/navigation";
 
 const sidebarItems = [
   {
@@ -72,7 +71,6 @@ const sidebarItems = [
 const SideBar = () => {
   const { socket } = useSocket();
   const { addNotification } = useNotificationStore();
-  const pathname = usePathname();
 
   useEffect(() => {
     if (socket) {

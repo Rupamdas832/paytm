@@ -1,6 +1,5 @@
 "use client";
 import { usePathname, useRouter } from "next/navigation";
-import { useMemo } from "react";
 
 const SiderbarItem = ({
   icon,

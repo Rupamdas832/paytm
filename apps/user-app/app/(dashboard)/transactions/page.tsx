@@ -22,7 +22,7 @@ async function getOnRampTransactions() {
     },
   });
 
-  return senderTxns.map((t) => ({
+  return senderTxns.map((t: any) => ({
     startTime: t.startTime,
     endTime: t.endTime,
     amount: t.amount,

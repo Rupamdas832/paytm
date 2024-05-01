@@ -7,14 +7,21 @@ interface AppbarProps {
   // TODO: can u figure out what the type should be here?
   onSignin: any;
   onSignout: any;
+  toggleSidebar: () => void;
 }
 
-export const Appbar = ({ user, onSignin, onSignout }: AppbarProps) => {
+export const Appbar = ({
+  user,
+  onSignin,
+  onSignout,
+  toggleSidebar,
+}: AppbarProps) => {
   return (
     <div className="flex justify-between border-b px-4 bg-gradient-to-t from-blue-300 to-blue-100">
       <div className="text-lg flex items-center font-black text-2xl text-blue-900">
         pay<span className="text-blue-600">tm</span>
       </div>
+      <Button onClick={toggleSidebar}>Menu</Button>
       <div className="flex flex-col justify-center pt-2">
         <Button onClick={user ? onSignout : onSignin}>
           {user ? "Logout" : "Login"}

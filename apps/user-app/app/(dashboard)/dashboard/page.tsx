@@ -22,7 +22,7 @@ export default async function () {
   return (
     <div className="flex flex-col w-full">
       <h1 className="text-3xl font-bold text-blue-600">Dashboard</h1>
-      <div className="w-1/2 mt-4">
+      <div className="max-w-96 mt-4">
         <BalanceCard amount={balance.amount} locked={balance.locked} />
       </div>
     </div>

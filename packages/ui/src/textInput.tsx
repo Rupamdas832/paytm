@@ -7,16 +7,19 @@ export const TextInput = ({
   onChange,
   label,
   type = "text",
+  value,
 }: {
   placeholder: string;
   onChange: (value: string) => void;
   label: string;
   type?: string;
+  value: string | number;
 }) => {
   return (
     <div className="pt-2">
       <Label label={label} />
       <input
+        value={value}
         onChange={(e) => onChange(e.target.value)}
         type={type}
         id="first_name"

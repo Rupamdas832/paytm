@@ -56,6 +56,7 @@ const AddMoneyCard = ({ user }: { user: User }) => {
         label="Amount"
         type="number"
         onChange={(val) => setAmount(Number(val))}
+        value={amount}
       />
       <div className="flex flex-col mt-4">
         <Label label="Bank" />

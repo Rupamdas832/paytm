@@ -52,12 +52,14 @@ const P2PTransferCard = () => {
         type="number"
         onChange={(val) => setPhoneNumber(Number(val))}
         label="Phone number"
+        value={phoneNumber}
       />
       <TextInput
         placeholder="1000"
         type="number"
         onChange={(val) => setAmount(Number(val))}
         label="Amount"
+        value={amount}
       />
       {error && <p className="text-red-500 text-center pt-2">{error}</p>}
       <div className="mt-4 flex justify-end">

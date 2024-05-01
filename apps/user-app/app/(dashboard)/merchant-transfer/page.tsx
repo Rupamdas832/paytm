@@ -21,8 +21,9 @@ export default function MerchantTransfer() {
     }
   };
 
-  const handleScanQrCode = (val: any) => {
+  const handleScanQrCode = (val: string) => {
     setScannedResult(val);
+    setReceiverEmail(val);
   };
 
   return (
@@ -35,8 +36,8 @@ export default function MerchantTransfer() {
           label="Email ID"
           onChange={(val) => setReceiverEmail(val)}
         />
-        <QrReader setScannedResult={handleScanQrCode} />
-        {JSON.stringify(scannedResult)}
+        {!scannedResult && <QrReader setScannedResult={handleScanQrCode} />}
+        {scannedResult && scannedResult}
         <div className="mt-4">
           <Button onClick={() => handleMerchantSend("Rs 200 send success", 1)}>
             Send money to merchant

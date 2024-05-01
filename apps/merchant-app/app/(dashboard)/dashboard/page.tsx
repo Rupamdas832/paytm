@@ -11,9 +11,7 @@ const Dashboard = async () => {
       <div className="mt-4">
         <h2>My QR Code</h2>
         {session && session?.user?.email && (
-          <QRCode
-            value={`http://localhost:3001/merchant-transfer/?merchantEmail=${session.user?.email}`}
-          />
+          <QRCode value={`${session.user?.email}`} />
         )}
       </div>
     </div>
